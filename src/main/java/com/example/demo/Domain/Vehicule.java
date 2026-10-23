@@ -19,24 +19,27 @@ import java.util.Set;
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 
-
-
 public class Vehicule {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long idVehicule;
-    String immatriculation; String marque; String modele;
+    String immatriculation;
+    String marque;
+    String modele;
 
     @Enumerated(EnumType.STRING)
     CategorieVehicule categorie;
+
     BigDecimal tarifJournalier;
     @Enumerated(EnumType.STRING)
+
     StatutVehicule statut;
 
     @ManyToOne
-    Agence agence;
+    private Agence agence;
 
-    @OneToMany
-    Set<Equipement> equipements ;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "vehicule_equipement")
+    private Set<Equipement> equipements = new HashSet<>();
 
 
 }
