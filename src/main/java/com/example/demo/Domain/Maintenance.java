@@ -1,9 +1,6 @@
 package com.example.demo.Domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -24,5 +21,8 @@ public class Maintenance {
     LocalDate dateDebut;
     LocalDate dateFin;
     String descripition;
+
+    @ManyToOne
+    Vehicule vehicule;
 
 }

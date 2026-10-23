@@ -16,14 +16,19 @@ import java.time.LocalDate;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 
 public class Reservation {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long idReservation;
-    LocalDate dateDebut;
-    LocalDate dateFin;
+    LocalDate dateDebut; LocalDate dateFin;
 
-    @Enumerated(value= EnumType.STRING)
-    StatutResevation statut;
+    @Enumerated(EnumType.STRING)
+    StatutReservation statut;           // renommez StatutResevation en StatutReservation
 
+    @ManyToOne
+    Client client;
 
+    @ManyToOne
+    Vehicule vehicule;
+
+    @OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL)
+    Contrat contrat;
 }

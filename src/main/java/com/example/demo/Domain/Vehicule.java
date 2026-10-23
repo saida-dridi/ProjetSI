@@ -5,6 +5,10 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -18,20 +22,21 @@ import java.math.BigDecimal;
 
 
 public class Vehicule {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-     long idVehicule;
-     String immatriculation;
-     String marque;
-     String modele;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long idVehicule;
+    String immatriculation; String marque; String modele;
 
-     @Enumerated(value=EnumType.STRING)
-     CategorieVehicule categorie;
+    @Enumerated(EnumType.STRING)
+    CategorieVehicule categorie;
+    BigDecimal tarifJournalier;
+    @Enumerated(EnumType.STRING)
+    StatutVehicule statut;
 
-     BigDecimal tarifJournalier;
+    @ManyToOne
+    Agence agence;
 
-    @Enumerated(value=EnumType.STRING)
-     StatutVehicule statut;
+    @OneToMany
+    Set<Equipement> equipements ;
 
 
 }

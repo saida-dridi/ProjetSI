@@ -6,6 +6,8 @@ import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.FetchType;
 
 @Entity
 @Getter
@@ -23,7 +25,9 @@ public class Paiement {
     BigDecimal montant;
     LocalDateTime datePaiement;
 
-    @Enumerated(value= EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     ModePaiement modePaiement;
 
+    @ManyToOne
+    Contrat contrat;
 }
